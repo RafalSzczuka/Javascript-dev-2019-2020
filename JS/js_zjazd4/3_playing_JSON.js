@@ -1,7 +1,7 @@
 // 3)	Based on included JSON file.
-// a.	Create a function that will return Json from the file. a
-// b.	Create a structures to hold data from the file. b
-// c.	Map data from function a to structure from b.
+// a.	Create a function that will return Json from the file. a <--- DONE
+// b.	Create a structures to hold data from the file. b <--- DONE
+// c.	Map data from function a to structure from b. <--- DONE
 // d.	Create >>> object <<< that will give us data about:
 // i.	How much money was spend in 2014 <--- DONE
 // ii.	What company was earning how much <--- DONE
@@ -9,7 +9,11 @@
 // iv.	Values of the spending in each month <--- DONE
 // v.	Values of the spending in each day of the week <--- DONE
 
-const data = require("./Data.json");
+// function that returns json from file
+const importJson = function(file) {
+  return (data = require(file));
+};
+importJson("./Data.json");
 
 // empty array to store data from json file. Array created to use more methods of Array object type
 let financialData = [];
@@ -49,7 +53,7 @@ const totalSpend = `Total spend in 2014: ${financialData
   .reduce((currentTotal, item) => {
     return parseFloat(item.cost) + currentTotal;
   }, 0)
-  .toFixed(2)}`;
+  .toFixed(2)} $`;
 
 //creating unique set of company names
 const companyNames = [
@@ -57,7 +61,7 @@ const companyNames = [
 ];
 let spendByCompanyName = []; // empty array, to store spenings by company name
 // calculate spendings for each company name
-companyNames.forEach((element) => {
+companyNames.forEach(element => {
   let spend = financialData
     .filter(item => {
       return item.detailsOfPayent.company == element;
@@ -66,8 +70,8 @@ companyNames.forEach((element) => {
       return parseFloat(item.cost) + currentTotal;
     }, 0)
     .toFixed(2);
-  spendByCompanyName.push(`Spend by company ${element}: ${spend}`);
-})
+  spendByCompanyName.push(`Spend by company ${element}: ${spend} $`);
+});
 
 // creating unique set of transaction types
 const transactionTypes = [
@@ -75,7 +79,7 @@ const transactionTypes = [
 ];
 const spendByType = []; // empty array to store spendings by type
 // calculate spendings for each type
-transactionTypes.forEach((element) => {
+transactionTypes.forEach(element => {
   let spend = financialData
     .filter(item => {
       return item.detailsOfPayent.Type == element;
@@ -84,8 +88,8 @@ transactionTypes.forEach((element) => {
       return parseFloat(item.cost) + currentTotal;
     }, 0)
     .toFixed(2);
-  spendByType.push(`Spend by Type ${element}: ${spend}`);
-})
+  spendByType.push(`Spend by Type ${element}: ${spend} $`);
+});
 
 // creating unique set of months from data provided
 const months = [
@@ -93,17 +97,17 @@ const months = [
 ];
 const spendByMonth = []; // empty array to store spendings by month
 // calculate spendings for each month
-months.forEach((element) => {
+months.forEach(element => {
   let spend = financialData
-  .filter(item => {
-    return item.detailsOfPayent.date[1] == element;
-  })
-  .reduce((currentTotal, item) => {
-    return parseFloat(item.cost) + currentTotal;
-  }, 0)
-  .toFixed(2);
-spendByMonth.push(`Spend by month ${element}: ${spend}`);
-})
+    .filter(item => {
+      return item.detailsOfPayent.date[1] == element;
+    })
+    .reduce((currentTotal, item) => {
+      return parseFloat(item.cost) + currentTotal;
+    }, 0)
+    .toFixed(2);
+  spendByMonth.push(`Spend by month ${element}: ${spend} $`);
+});
 
 //creating unique set of days
 const days = [
@@ -112,20 +116,20 @@ const days = [
 // empty array to store spendings by day of week
 const spendByDayOfWeek = [];
 // calculate spendings by day of week
-days.forEach((element) => {
+days.forEach(element => {
   let spend = financialData
-  .filter(item => {
-    return item.detailsOfPayent.date[3] == element;
-  })
-  .reduce((currentTotal, item) => {
-    return parseFloat(item.cost) + currentTotal;
-  }, 0)
-  .toFixed(2);
-spendByDayOfWeek.push(`Spend by day ${element}: ${spend}`);
-})
+    .filter(item => {
+      return item.detailsOfPayent.date[3] == element;
+    })
+    .reduce((currentTotal, item) => {
+      return parseFloat(item.cost) + currentTotal;
+    }, 0)
+    .toFixed(2);
+  spendByDayOfWeek.push(`Spend by day ${element}: ${spend} $`);
+});
 
-console.log(totalSpend);
-console.log(spendByCompanyName);
+// console.log(totalSpend);
+// console.log(spendByCompanyName);
 // console.log(spendByType);
-// console.log(spendByMonth);
+console.log(spendByMonth);
 // console.log(spendByDayOfWeek);
