@@ -1,4 +1,7 @@
-// Create a solution that will tell us what poker set we have. The solution is to deal us 5 cards from the standard 52 card deck. After that the solution is to tell us what is the best poker set. EXAM
+/* Create a solution that will tell us what poker set we have.
+The solution is to deal us 5 cards from the standard 52 card deck.
+After that the solution is to tell us what is the best poker set. EXAM
+*/
 
 //iife function, generates 52 card deck,
 const deckGenerator = (function() {
@@ -39,10 +42,10 @@ console.log();
 // TEMPORARY TEST DECK!!!
 // const pokerChecker = [
 //   { value: 2, color: "diamonds" },
-//   { value: 2, color: "hearts" },
-//   { value: 2, color: "spades" },
-//   { value: 2, color: "clubs" },
-//   { value: 11, color: "diamonds" }
+//   { value: 3, color: "hearts" },
+//   { value: 4, color: "spades" },
+//   { value: 5, color: "clubs" },
+//   { value: 14, color: "diamonds" }
 // ].sort((a, b) => a.value - b.value);
 // pokerChecker.forEach(card => console.log(`${card.value} of ${card.color}`));
 
@@ -139,7 +142,34 @@ const checkPoker = (function(cards) {
   }
 
   // Straight checker
-  // NOT IMPLEMENTED YET .... :(
+  if (!winner) {
+    // simple straight - values +/-1
+    const straight = (cards => {
+      const valueChecker = valueOcurrances(cards);
+      let values = [cards[0]];
+      if (valueChecker.length === 5) {
+        for (let i = 1; i < cards.length; i++) {
+          if (cards[i].value === cards[i - 1].value + 1) {
+            values.push(cards[i]);
+          }
+        }
+        if (values.length === 5) {
+          console.log("You have Straight");
+          winner = true;
+        }
+        // straight with ACE as lowest card
+        if (!winner) {
+          const valueChecker = cards.filter(card => {
+            return card.value >= 2 && card.value <= 5;
+          });
+          if (valueChecker.length === 4 && cards[4].value === 14) {
+            console.log("You have Straight");
+            winner = true;
+          }
+        }
+      }
+    })(cards);
+  }
 
   // Three of a Kind checker
   if (!winner) {
