@@ -39,10 +39,10 @@ console.log();
 // TEMPORARY TEST DECK!!!
 // const pokerChecker = [
 //   { value: 2, color: "diamonds" },
-//   { value: 5, color: "diamonds" },
-//   { value: 7, color: "spades" },
-//   { value: 10, color: "spades" },
-//   { value: 12, color: "diamonds" }
+//   { value: 2, color: "hearts" },
+//   { value: 2, color: "spades" },
+//   { value: 2, color: "clubs" },
+//   { value: 11, color: "diamonds" }
 // ].sort((a, b) => a.value - b.value);
 // pokerChecker.forEach(card => console.log(`${card.value} of ${card.color}`));
 
@@ -77,19 +77,13 @@ const checkPoker = (function(cards) {
 
   // Royal Flush checker
   const royalFlush = (cards => {
-    this.winner = winner;
-    let sameColor = [cards[0]];
-    for (let i = 1; i < cards.length; i++) {
-      if (cards[i].color === sameColor[0].color) {
-        sameColor.push(cards[i]);
-      }
-    }
-    if (sameColor.length === 5) {
-      const royalFlushResult = sameColor.filter(card => {
+    const colorChecker = colorOcurrances(cards);
+    if (colorChecker.includes(5)) {
+      const valueChecker = pokerChecker.filter(card => {
         return card.value >= 10;
       });
-      if (royalFlushResult.length === 5) {
-        console.log("Congrats! You have Royal Flush!");
+      if (valueChecker.length === 5) {
+        console.log("OMG, Congrats! You have a Royal Flush!");
         winner = true;
       }
     }
@@ -98,17 +92,12 @@ const checkPoker = (function(cards) {
   // Straight Flush checker
   if (!winner) {
     const straightFlush = (cards => {
-      let sameColor = [cards[0]];
-      for (let i = 1; i < cards.length; i++) {
-        if (cards[i].color === sameColor[0].color) {
-          sameColor.push(cards[i]);
-        }
-      }
-      if (sameColor.length === 5) {
-        const royalFlushResult = sameColor.filter(card => {
+      const colorChecker = colorOcurrances(cards);
+      if (colorChecker.includes(5)) {
+        const valueChecker = pokerChecker.filter(card => {
           return card.value >= 7 && card.value <= 11;
         });
-        if (royalFlushResult.length === 5) {
+        if (valueChecker.length === 5) {
           console.log("Congrats! You have Straight Flush!");
           winner = true;
         }
