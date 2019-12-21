@@ -5,7 +5,7 @@ After that the solution is to tell us what is the best poker set. EXAM
 
 //iife function, generates 52 card deck,
 const deckGenerator = (function() {
-  const colors = ["clubs", "diamonds", "hearts", "spades"];
+  const colors = ["Clubs", "Diamonds", "Hearts", "Spades"];
   let deck = [];
   let card = {};
   for (let i = 2; i <= 14; i++) {
@@ -34,10 +34,29 @@ const randomCards = (function() {
 // for easier use, function 'randomCards' result assigned to new variable. Deck is sorted by card value (ascending order)
 const fiveRandomCards = randomCards.fiveCards.sort((a, b) => a.value - b.value);
 
-// log each value and color of cards in hand
-console.log("Your sorted card deck:");
-fiveRandomCards.forEach(card => console.log(`${card.value} of ${card.color}`));
-console.log();
+// for more readible - changing values 11-14 with card names ("jack", "queen" etc.)
+const cardsCopy = JSON.parse(JSON.stringify(fiveRandomCards)); // DEEP COPY of original array of 5 cards
+
+// map copied array with new names
+cardsCopy.map(card => {
+  if (card.value === 11) {
+    card.value = "Jack";
+  }
+  if (card.value === 12) {
+    card.value = "Queen";
+  }
+  if (card.value === 13) {
+    card.value = "King";
+  }
+  if (card.value === 14) {
+    card.value = "Ace";
+  }
+});
+
+// log each value and color of cards in hand.
+console.log("Your sorted hand deck:");
+cardsCopy.forEach(card => console.log(`${card.value} of ${card.color}`));
+console.log("......................");
 
 // TEMPORARY TEST DECK!!!
 // const pokerChecker = [
@@ -211,7 +230,7 @@ const checkPoker = (function(cards) {
   // High Card checker
   if (!winner) {
     console.log(
-      `You have only High Card. Your highest card is: ${cards[4].value} of ${cards[4].color}`
+      `You have only High Card. Your highest card is: ${cardsCopy[4].value} of ${cardsCopy[4].color}`
     );
     winner = true;
   }
