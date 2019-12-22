@@ -1,15 +1,15 @@
 const fs = require("fs");
 
 class Quote {
-  constructor(quote, author, id, group) {
-    (this.quote = quote),
+  constructor(id, quote, author, group) {
+    (this.id = id),
+      (this.quote = quote),
       (this.author = author),
-      (this.id = id),
       (this.group = group);
   }
 }
 const addQuote = args => {
-  const newQuote = new Quote(args.quote, args.author, this.id, args.group);
+  const newQuote = new Quote(this.id, args.quote, args.author, args.group);
 
   fs.readFile("./quotes.json", "utf-8", (err, data) => {
     if (err) throw err;

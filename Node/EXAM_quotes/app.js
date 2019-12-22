@@ -18,5 +18,5 @@ require("yargs")
   .command(addCommand)
   .command(listCommand)
   .command(deleteCommand)
-  .demandCommand(1, "Musisz podać przynajmniej jedno polecenie")
+  .demandCommand(1, "You have to enter one command at least")
   .help().argv;

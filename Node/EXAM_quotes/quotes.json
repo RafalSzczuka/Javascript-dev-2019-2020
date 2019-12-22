@@ -1,40 +1,40 @@
 {
   "quotes": [
     {
-      "quote": "Przykladowy cytat",
+      "id": 1,
+      "quote": "Example quote",
       "author": "Paolo Coelho",
+      "group": "example group"
+    },
+    {
+      "id": 2,
+      "quote": "Example quote",
+      "author": "Paolo Coelho",
+      "group": "example group"
+    },
+    {
       "id": 3,
-      "group": "madre rzeczy"
+      "quote": "Example quote",
+      "author": "Paolo Coelho",
+      "group": "example group"
     },
     {
-      "quote": "Przykladowy cytat",
-      "author": "Paolo Coelho",
       "id": 4,
-      "group": "madre rzeczy"
+      "quote": "Example quote",
+      "author": "Paolo Coelho",
+      "group": "example group"
     },
     {
-      "quote": "Przykladowy cytat",
+      "id": 5,
+      "quote": "Example quote",
       "author": "Paolo Coelho",
+      "group": "example group"
+    },
+    {
       "id": 6,
-      "group": "madre rzeczy"
-    },
-    {
-      "quote": "Przykladowy cytat",
+      "quote": "Example quote",
       "author": "Paolo Coelho",
-      "id": 7,
-      "group": "madre rzeczy"
-    },
-    {
-      "quote": "Przykladowy cytat",
-      "author": "Paolo Coelho",
-      "id": 8,
-      "group": "madre rzeczy"
-    },
-    {
-      "quote": "Przykladowy cytat",
-      "author": "Paolo Coelho",
-      "id": 9,
-      "group": "madre rzeczy"
+      "group": "example group"
     }
   ]
 }

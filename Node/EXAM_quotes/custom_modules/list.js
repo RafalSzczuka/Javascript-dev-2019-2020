@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const getListHandler = () => {
+const getQuoteList = () => {
   fs.readFile("quotes.json", "utf-8", (error, data) => {
     if (error) {
       console.log(error.message);
@@ -11,7 +11,7 @@ const getListHandler = () => {
 };
 
 module.exports = {
-  command: "lista",
-  desc: "Wyświetl wszystkie zadania z listy TODO",
-  handler: getListHandler
+  command: "list",
+  desc: "Show all quotes",
+  handler: getQuoteList
 };
