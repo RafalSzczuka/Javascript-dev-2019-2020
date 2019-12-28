@@ -28,6 +28,6 @@ const deleteQuote = args => {
 
 module.exports = {
   command: "delete <id>",
-  desc: "Deleting quote by id",
+  desc: "Delete quote by id",
   handler: deleteQuote
 };

@@ -2,39 +2,45 @@
   "quotes": [
     {
       "id": 1,
-      "quote": "Example quote",
-      "author": "Paolo Coelho",
-      "group": "example group"
+      "quote": "Example quote 1",
+      "author": "Some Random Guy",
+      "group": null,
+      "counter": 0
     },
     {
       "id": 2,
-      "quote": "Example quote",
-      "author": "Paolo Coelho",
-      "group": "example group"
+      "quote": "Example quote 2",
+      "author": "Another Random Guy",
+      "group": null,
+      "counter": 0
     },
     {
       "id": 3,
-      "quote": "Example quote",
-      "author": "Paolo Coelho",
-      "group": "example group"
+      "quote": "Example quote 3",
+      "author": "Funny Guy",
+      "group": null,
+      "counter": 0
     },
     {
       "id": 4,
-      "quote": "Example quote",
-      "author": "Paolo Coelho",
-      "group": "example group"
+      "quote": "-Nie zakochałeś się jeszcze we właściwiej osobie?\n-Niestety, moją jedyną miłością pozostaję ja sam.\n-Przynajmniej nie martwisz się odrzuceniem, chłopcze.\n-Niekoniecznie. Od czasu do czasu się odtrącam, żeby było ciekawiej.",
+      "author": "Cassandra Clare",
+      "group": "",
+      "counter": 0
     },
     {
       "id": 5,
-      "quote": "Example quote",
-      "author": "Paolo Coelho",
-      "group": "example group"
+      "quote": "To, że twoja wrażliwość uczuciowa mieści się w łyżeczce od herbaty, nie świadczy o tym, że wszyscy są tak upośledzeni.",
+      "author": "J.K. Rowling",
+      "group": "",
+      "counter": 0
     },
     {
       "id": 6,
-      "quote": "Example quote",
-      "author": "Paolo Coelho",
-      "group": "example group"
+      "quote": "Pokój bez książek to jak ciało bez duszy.",
+      "author": "Gilbert Keith Chesterton",
+      "group": "",
+      "counter": 0
     }
   ]
 }

@@ -5,7 +5,9 @@ const getQuoteList = () => {
     if (error) {
       console.log(error.message);
     } else {
-      console.log(JSON.parse(data));
+      const file = JSON.parse(data);
+      console.log("\nList of all quotes:");
+      console.table(file.quotes, ["id", "quote", "author", "group"]);
     }
   });
 };

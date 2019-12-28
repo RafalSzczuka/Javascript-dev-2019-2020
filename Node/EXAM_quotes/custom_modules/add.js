@@ -1,15 +1,22 @@
 const fs = require("fs");
 
 class Quote {
-  constructor(id, quote, author, group) {
+  constructor(id, quote, author, group, counter) {
     (this.id = id),
       (this.quote = quote),
       (this.author = author),
-      (this.group = group);
+      (this.group = group),
+      (this.counter = counter);
   }
 }
 const addQuote = args => {
-  const newQuote = new Quote(this.id, args.quote, args.author, args.group);
+  const newQuote = new Quote(
+    this.id,
+    args.quote,
+    args.author,
+    (this.group = null),
+    (this.counter = 0)
+  );
 
   fs.readFile("./quotes.json", "utf-8", (err, data) => {
     if (err) throw err;
@@ -39,7 +46,8 @@ const addQuote = args => {
 };
 
 module.exports = {
-  command: "add <quote> <author> <group>",
-  desc: "Adding new quote",
-  handler: addQuote
+  command: "add quote <quote> author <author>",
+  desc: "Add new quote and author",
+  handler: addQuote,
+  Quote: Quote
 };
