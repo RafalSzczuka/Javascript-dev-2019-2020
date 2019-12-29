@@ -19,29 +19,24 @@ const addQuote = args => {
   fs.readFile("./quotes.json", "utf-8", (err, data) => {
     if (err) throw err;
 
-    let arrayOfQuotes = JSON.parse(data);
+    let file = JSON.parse(data);
 
     // finds last element index. If array of quotes is empty - sets last element to 0 by default
     let lastElement;
-    if (arrayOfQuotes.quotes.length === 0) {
+    if (file.quotes.length === 0) {
       lastElement = 0;
     } else {
-      lastElement = arrayOfQuotes.quotes[arrayOfQuotes.quotes.length - 1].id;
+      lastElement = file.quotes[file.quotes.length - 1].id;
     }
 
     // new quote id is last element id + 1
     newQuote.id = lastElement + 1;
-    arrayOfQuotes.quotes.push(newQuote);
+    file.quotes.push(newQuote);
 
-    fs.writeFile(
-      "./quotes.json",
-      JSON.stringify(arrayOfQuotes),
-      "utf-8",
-      err => {
-        if (err) throw err;
-        console.log("Quote added");
-      }
-    );
+    fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
+      if (err) throw err;
+      console.log("Quote added");
+    });
   });
 };
 
