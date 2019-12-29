@@ -5,10 +5,14 @@ const addGroup = args => {
     if (err) throw err;
 
     let file = JSON.parse(data);
+
+    // finds quote passing id number as an argument
     let selectElement = file.quotes.find(elem => elem.id == args.id);
 
+    // finds index of selected quote
     let quoteIndex = file.quotes.indexOf(selectElement);
 
+    // sets group name to selected quote
     file.quotes[quoteIndex].group = args.group;
 
     fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {

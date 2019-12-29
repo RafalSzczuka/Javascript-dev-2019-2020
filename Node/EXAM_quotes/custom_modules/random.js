@@ -20,6 +20,7 @@ const getRandomQuote = () => {
         if (err) throw err;
       });
 
+      // logs quote data using drawer function
       console.log("\nRandom quote: ");
       drawer(
         randomQuote.id,

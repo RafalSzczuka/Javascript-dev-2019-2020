@@ -9,6 +9,8 @@ const getQuoteList = () => {
       const file = JSON.parse(data);
 
       console.log("\nList of all quotes:");
+
+      // list all quotes using drawer function
       file.quotes.forEach(quote => {
         drawer(quote.id, quote.quote, quote.author, quote.group);
       });

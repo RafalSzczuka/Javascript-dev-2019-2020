@@ -5,8 +5,11 @@ const filterGroup = args => {
     if (err) throw err;
 
     let file = JSON.parse(data);
+
+    // filters quotes by passed group name argument
     let filteredQuotes = file.quotes.filter(elem => elem.group == args.group);
 
+    // if passeed group name is not in quotes - log info about it
     if (filteredQuotes == false) {
       console.log("There's no such a group");
     } else {

@@ -6,10 +6,12 @@ const downloadQuote = () => {
   fs.readFile("./quotes.json", "utf-8", (err, data) => {
     if (err) throw err;
 
+    // getQuote is async func. It's core construction is quite the same as in the add.js file
     const getQuote = (async () => {
       try {
         let file = JSON.parse(data);
 
+        // finds last element index. If array of quotes is empty - sets last element to 0 by default
         let lastElement;
         if (file.quotes.length === 0) {
           lastElement = 0;
@@ -20,6 +22,8 @@ const downloadQuote = () => {
         const response = await axios(
           `http://ec2-18-217-240-10.us-east-2.compute.amazonaws.com/node/quotes.php`
         );
+
+        // creating new quote by Quote class
         const newQuote = new Quote(
           this.id,
           (quote = response.data.quote),
@@ -28,6 +32,7 @@ const downloadQuote = () => {
           (this.counter = 0)
         );
 
+        // new quote id is last element id + 1
         newQuote.id = lastElement + 1;
         file.quotes.push(newQuote);
 

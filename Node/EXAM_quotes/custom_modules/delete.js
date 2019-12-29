@@ -3,25 +3,23 @@ const fs = require("fs");
 const deleteQuote = args => {
   fs.readFile("./quotes.json", "utf-8", (err, data) => {
     if (err) throw err;
-    let arrayOfQuotes = JSON.parse(data);
+    let file = JSON.parse(data);
 
-    let findElement = arrayOfQuotes.quotes.find(elem => elem.id == args.id);
+    // finds quote passing id number as an argument
+    let findElement = file.quotes.find(elem => elem.id == args.id);
 
-    let deleteIndex = arrayOfQuotes.quotes.indexOf(findElement);
+    // finds index of selected quote
+    let deleteIndex = file.quotes.indexOf(findElement);
 
+    // if passed id number is not in quotes - log info about it
     if (deleteIndex === -1) {
       console.log("Index not found");
     } else {
-      arrayOfQuotes.quotes.splice(deleteIndex, 1);
-      fs.writeFile(
-        "./quotes.json",
-        JSON.stringify(arrayOfQuotes),
-        "utf-8",
-        err => {
-          if (err) throw err;
-          console.log("Quote deleted");
-        }
-      );
+      file.quotes.splice(deleteIndex, 1);
+      fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
+        if (err) throw err;
+        console.log("Quote deleted");
+      });
     }
   });
 };

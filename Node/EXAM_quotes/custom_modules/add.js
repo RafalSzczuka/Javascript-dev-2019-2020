@@ -1,6 +1,7 @@
 const fs = require("fs");
 const Quote = require("./quoteClass");
 
+// creating new quote by Quote class
 const addQuote = args => {
   const newQuote = new Quote(
     this.id,
@@ -10,6 +11,7 @@ const addQuote = args => {
     (this.counter = 0)
   );
 
+  // if group name is not defined (optionall argument) its set to "unassigned group" by default
   if (!newQuote.group) {
     newQuote.group = "unassigned group";
   }
@@ -19,6 +21,7 @@ const addQuote = args => {
 
     let arrayOfQuotes = JSON.parse(data);
 
+    // finds last element index. If array of quotes is empty - sets last element to 0 by default
     let lastElement;
     if (arrayOfQuotes.quotes.length === 0) {
       lastElement = 0;
@@ -26,6 +29,7 @@ const addQuote = args => {
       lastElement = arrayOfQuotes.quotes[arrayOfQuotes.quotes.length - 1].id;
     }
 
+    // new quote id is last element id + 1
     newQuote.id = lastElement + 1;
     arrayOfQuotes.quotes.push(newQuote);
 
