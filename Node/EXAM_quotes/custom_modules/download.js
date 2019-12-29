@@ -1,6 +1,8 @@
 const fs = require("fs");
 const axios = require("axios");
 const Quote = require("./quoteClass");
+const drawer = require("./drawer").drawer;
+const colors = require("colors");
 
 const downloadQuote = () => {
   fs.readFile("./quotes.json", "utf-8", (err, data) => {
@@ -38,9 +40,9 @@ const downloadQuote = () => {
 
         fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
           if (err) throw err;
-          console.log(
-            `New quote added:\nQuote "${response.data.quote}"\nAuthor: ${response.data.author}`
-          );
+
+          console.log(`\nNew quote added:\n`.bold);
+          drawer(newQuote.id, newQuote.quote, newQuote.author, newQuote.group);
         });
       } catch (error) {
         console.log(error.message);

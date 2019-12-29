@@ -1,5 +1,6 @@
 const fs = require("fs");
 const drawer = require("./drawer").drawer;
+const colors = require("colors");
 
 const getRandomQuote = () => {
   fs.readFile("quotes.json", "utf-8", (error, data) => {
@@ -21,14 +22,18 @@ const getRandomQuote = () => {
       });
 
       // logs quote data using drawer function
-      console.log("\nRandom quote: ");
+      console.log("\nRandom quote: \n".bold);
       drawer(
         randomQuote.id,
         randomQuote.quote,
         randomQuote.author,
         randomQuote.group
       );
-      console.log(`\nThis quote was displayed ${randomQuote.counter} times\n`);
+      console.log(
+        `\nThis quote was displayed`.bold,
+        `${randomQuote.counter}`.bold.yellow,
+        `times\n`.bold
+      );
     }
   });
 };

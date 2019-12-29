@@ -1,5 +1,7 @@
 const fs = require("fs");
 const Quote = require("./quoteClass");
+const drawer = require("./drawer").drawer;
+const colors = require("colors");
 
 // creating new quote by Quote class
 const addQuote = args => {
@@ -35,7 +37,7 @@ const addQuote = args => {
 
     fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
       if (err) throw err;
-      console.log("Quote added");
+      drawer(newQuote.id, newQuote.quote, newQuote.author, newQuote.group);
     });
   });
 };

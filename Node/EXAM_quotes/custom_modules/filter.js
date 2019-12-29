@@ -1,5 +1,6 @@
 const fs = require("fs");
 const drawer = require("./drawer").drawer;
+const colors = require("colors");
 
 const filterGroup = args => {
   fs.readFile("./quotes.json", "utf-8", (err, data) => {
@@ -14,7 +15,7 @@ const filterGroup = args => {
     if (filteredQuotes == false) {
       console.log("There's no such a group");
     } else {
-      console.log(`\nFiltered quotes by group "${args.group}":`);
+      console.log(`\nFiltered quotes by group "${args.group}":\n`.bold);
       filteredQuotes.forEach(quote => {
         drawer(quote.id, quote.quote, quote.author, quote.group);
       });

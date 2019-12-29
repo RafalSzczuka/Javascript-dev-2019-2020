@@ -1,4 +1,5 @@
 const fs = require("fs");
+const colors = require("colors");
 
 const addGroup = args => {
   fs.readFile("./quotes.json", "utf-8", (err, data) => {
@@ -17,7 +18,7 @@ const addGroup = args => {
 
     fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
       if (err) throw err;
-      console.log("Group assigned");
+      console.log(`Group`.bold, `${args.group}`.bold.green, `assigned`.bold);
     });
   });
 };

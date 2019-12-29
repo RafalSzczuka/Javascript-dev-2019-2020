@@ -5,7 +5,7 @@
       "quote": "Example quote 1",
       "author": "Some Random Guy",
       "group": "unassigned group",
-      "counter": 1
+      "counter": 2
     },
     {
       "id": 2,
@@ -18,21 +18,14 @@
       "id": 3,
       "quote": "Example quote 3",
       "author": "Funny Guy",
-      "group": "unassigned group",
-      "counter": 2
+      "group": "example group",
+      "counter": 4
     },
     {
       "id": 4,
       "quote": "Czytanie książek to najpiękniejsza zabawa, jaką sobie ludzkość wymyśliła",
       "author": "Wisława Szymborska",
       "group": "unassigned group",
-      "counter": 0
-    },
-    {
-      "id": 5,
-      "quote": "A wie pan co jest najlepszego w złamanym sercu? (...) Tak naprawdę można je złamać tylko raz. Reszta to ledwie zadrapania",
-      "author": "Carlos Ruiz Zafón",
-      "group": "love words",
       "counter": 0
     }
   ]

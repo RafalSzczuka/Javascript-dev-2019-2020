@@ -1,5 +1,6 @@
 const fs = require("fs");
 const drawer = require("./drawer").drawer;
+const colors = require("colors");
 
 const getQuoteList = () => {
   fs.readFile("quotes.json", "utf-8", (error, data) => {
@@ -8,7 +9,7 @@ const getQuoteList = () => {
     } else {
       const file = JSON.parse(data);
 
-      console.log("\nList of all quotes:");
+      console.log("\nList of all quotes:\n".bold);
 
       // list all quotes using drawer function
       file.quotes.forEach(quote => {

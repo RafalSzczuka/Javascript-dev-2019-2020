@@ -1,10 +1,14 @@
+const colors = require("colors");
+
 const drawer = (id, quote, author, group) => {
-  console.log(`\n--------------------------------------------------------`);
-  console.log(`Id: ${id}\n`);
-  console.log(`Quote: "${quote}"\n`);
-  console.log(`Author: ${author}\n`);
-  console.log(`Group: ${group}`);
-  console.log(`--------------------------------------------------------`);
+  console.log(`Id:`, `${id}\n`.bold.yellow);
+  console.log(`Quote:`, `"${quote}"\n`.bold.green);
+  console.log(`Author:`, `${author}\n`.dim.green);
+  console.log(`Group:`, `${group}`.cyan);
+  console.log(
+    `--------------------------------------------------------------------------------------------`
+      .red
+  );
 };
 
 module.exports = { drawer: drawer };
