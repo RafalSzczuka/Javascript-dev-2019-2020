@@ -1,15 +1,6 @@
 const fs = require("fs");
 const axios = require("axios");
-
-class Quote {
-  constructor(id, quote, author, group, counter) {
-    (this.id = id),
-      (this.quote = quote),
-      (this.author = author),
-      (this.group = group),
-      (this.counter = counter);
-  }
-}
+const Quote = require("./quoteClass");
 
 const downloadQuote = () => {
   fs.readFile("./quotes.json", "utf-8", (err, data) => {
@@ -33,7 +24,7 @@ const downloadQuote = () => {
           this.id,
           (quote = response.data.quote),
           (author = response.data.author),
-          (this.group = ""),
+          (this.group = "unassigned group"),
           (this.counter = 0)
         );
 

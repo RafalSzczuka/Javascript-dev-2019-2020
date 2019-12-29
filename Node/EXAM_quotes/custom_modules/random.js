@@ -1,4 +1,5 @@
 const fs = require("fs");
+const drawer = require("./drawer").drawer;
 
 const getRandomQuote = () => {
   fs.readFile("quotes.json", "utf-8", (error, data) => {
@@ -13,24 +14,20 @@ const getRandomQuote = () => {
       // increasing quote display counter
       file.quotes[randomQuoteIndex].counter += 1;
 
-      // for easier use - reassigned new array (for console.table) of object (with random quote index)
-      let randomQuote = [
-        {
-          quote: file.quotes[randomQuoteIndex].quote,
-          author: file.quotes[randomQuoteIndex].author,
-          counter: file.quotes[randomQuoteIndex].counter,
-          id: file.quotes[randomQuoteIndex].id,
-          group: file.quotes[randomQuoteIndex].group
-        }
-      ];
+      let randomQuote = file.quotes[randomQuoteIndex];
 
       fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
         if (err) throw err;
       });
 
       console.log("\nRandom quote: ");
-      console.table(randomQuote, ["id", "quote", "author", "group"]);
-      console.log(`This quote was displayed ${randomQuote[0].counter} times\n`);
+      drawer(
+        randomQuote.id,
+        randomQuote.quote,
+        randomQuote.author,
+        randomQuote.group
+      );
+      console.log(`\nThis quote was displayed ${randomQuote.counter} times\n`);
     }
   });
 };
