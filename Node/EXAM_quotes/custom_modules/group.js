@@ -18,13 +18,13 @@ const addGroup = args => {
 
     fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
       if (err) throw err;
-      console.log(`Group`.bold, `${args.group}`.bold.green, `assigned`.bold);
+      console.log(`Group`.bold, `${args.group}`.cyan, `assigned`.bold);
     });
   });
 };
 
 module.exports = {
-  command: "group <group> id <id>",
+  command: "group <group> <id>",
   desc: "Assign a group to a quote selected by id",
   handler: addGroup
 };

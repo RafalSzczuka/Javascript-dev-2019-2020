@@ -41,7 +41,7 @@ const downloadQuote = () => {
         fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
           if (err) throw err;
 
-          console.log(`\nNew quote added:\n`.bold);
+          console.log(`\nNew quote downloaded:\n`.bold);
           drawer(newQuote.id, newQuote.quote, newQuote.author, newQuote.group);
         });
       } catch (error) {
@@ -53,6 +53,6 @@ const downloadQuote = () => {
 
 module.exports = {
   command: "download",
-  desc: "Download quote from a server",
+  desc: "Download random quote from a server",
   handler: downloadQuote
 };

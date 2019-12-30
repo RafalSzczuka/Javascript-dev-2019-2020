@@ -2,30 +2,58 @@
   "quotes": [
     {
       "id": 1,
-      "quote": "Example quote 1",
-      "author": "Some Random Guy",
-      "group": "unassigned group",
-      "counter": 2
+      "quote": "Żyj tak, jakbyś miał umrzeć jutro. Ucz się tak, jakbyś miał żyć wiecznie.",
+      "author": "Gandhi Mahatma",
+      "group": "Philosophy",
+      "counter": 0
     },
     {
       "id": 2,
-      "quote": "Example quote 2",
-      "author": "Another Random Guy",
+      "quote": "...ten, kto kocha naprawdę, kocha w milczeniu, uczynkiem, a nie słowami.",
+      "author": "Carlos Ruiz Zafón",
       "group": "unassigned group",
-      "counter": 3
+      "counter": 0
     },
     {
       "id": 3,
-      "quote": "Example quote 3",
-      "author": "Funny Guy",
-      "group": "example group",
-      "counter": 4
+      "quote": "Pokój bez książek to jak ciało bez duszy.",
+      "author": "Gilbert Keith Chesterton",
+      "group": "unassigned group",
+      "counter": 0
     },
     {
       "id": 4,
-      "quote": "Czytanie książek to najpiękniejsza zabawa, jaką sobie ludzkość wymyśliła",
-      "author": "Wisława Szymborska",
+      "quote": "– To wódka? – słabym głosem zapytała Małgorzata.(...)\n– Na litość boską, królowo – zachrypiał – czy ośmieliłbym się nalać damie wódki? To czysty spirytus.",
+      "author": "Michaił Bułhakow",
       "group": "unassigned group",
+      "counter": 0
+    },
+    {
+      "id": 5,
+      "quote": "Example custom quote",
+      "author": "Some Random Guy",
+      "group": "unassigned group",
+      "counter": 0
+    },
+    {
+      "id": 6,
+      "quote": "Zawsze trzeba być ostrożnym z książkami i z tym, co w nich jest, bo słowa mają moc zmieniania ludzi.",
+      "author": "Cassandra Clare",
+      "group": "unassigned group",
+      "counter": 0
+    },
+    {
+      "id": 7,
+      "quote": "Czytać to bardziej żyć, to żyć intensywniej.",
+      "author": "Carlos Ruiz Zafón",
+      "group": "Philosophy",
+      "counter": 0
+    },
+    {
+      "id": 8,
+      "quote": "Śmierć będzie ostatnim wrogiem, który zostanie zniszczony.",
+      "author": "J.K. Rowling",
+      "group": "Fantasy",
       "counter": 0
     }
   ]

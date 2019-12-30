@@ -13,9 +13,9 @@ const filterGroup = args => {
 
     // if passeed group name is not in quotes - log info about it
     if (filteredQuotes == false) {
-      console.log("There's no such a group");
+      console.log("There's no such a group".red);
     } else {
-      console.log(`\nFiltered quotes by group "${args.group}":\n`.bold);
+      console.log(`\nFiltered quotes by group:`.bold, `${args.group}\n`.cyan);
       filteredQuotes.forEach(quote => {
         drawer(quote.id, quote.quote, quote.author, quote.group);
       });

@@ -14,7 +14,7 @@ const deleteQuote = args => {
 
     // if passed id number is not in quotes - log info about it
     if (deleteIndex === -1) {
-      console.log("Index not found".bold.red);
+      console.log("ID not found".bold.red);
     } else {
       file.quotes.splice(deleteIndex, 1);
       fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {

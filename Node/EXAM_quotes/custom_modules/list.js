@@ -21,6 +21,6 @@ const getQuoteList = () => {
 
 module.exports = {
   command: "list",
-  desc: "Show all quotes",
+  desc: "Show a list of all quotes",
   handler: getQuoteList
 };
