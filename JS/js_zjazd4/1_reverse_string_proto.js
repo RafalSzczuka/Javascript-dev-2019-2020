@@ -5,3 +5,5 @@ String.prototype.reverseString = function() {
 };
 
 console.log("Rafał".reverseString());
+
+//new line test
