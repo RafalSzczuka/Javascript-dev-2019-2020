@@ -5,8 +5,8 @@ const drawer = require("./drawer").drawer;
 const colors = require("colors");
 
 const downloadQuote = () => {
-  fs.readFile("./quotes.json", "utf-8", (err, data) => {
-    if (err) throw err;
+  fs.readFile("./quotes.json", "utf-8", (error, data) => {
+    if (error) console.log(error.message);
 
     // getQuote is async func. It's core construction is quite the same as in the add.js file
     const getQuote = (async () => {
@@ -38,8 +38,8 @@ const downloadQuote = () => {
         newQuote.id = lastElement + 1;
         file.quotes.push(newQuote);
 
-        fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
-          if (err) throw err;
+        fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", error => {
+          if (error) console.log(error.message);
 
           console.log(`\nNew quote downloaded:\n`.bold);
           drawer(newQuote.id, newQuote.quote, newQuote.author, newQuote.group);

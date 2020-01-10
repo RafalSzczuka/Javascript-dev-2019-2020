@@ -22,8 +22,8 @@ const getRandomQuote = () => {
 
         let randomQuote = file.quotes[randomQuoteIndex];
 
-        fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
-          if (err) throw err;
+        fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", error => {
+          if (error) console.log(error.message);
         });
 
         // logs quote data using drawer function

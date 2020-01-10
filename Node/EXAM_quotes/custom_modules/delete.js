@@ -2,8 +2,8 @@ const fs = require("fs");
 const colors = require("colors");
 
 const deleteQuote = args => {
-  fs.readFile("./quotes.json", "utf-8", (err, data) => {
-    if (err) throw err;
+  fs.readFile("./quotes.json", "utf-8", (error, data) => {
+    if (error) console.log(error.message);
     let file = JSON.parse(data);
 
     // finds quote passing id number as an argument
@@ -17,8 +17,8 @@ const deleteQuote = args => {
       console.log("ID not found".bold.red);
     } else {
       file.quotes.splice(deleteIndex, 1);
-      fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
-        if (err) throw err;
+      fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", error => {
+        if (error) console.log(error.message);
         console.log("Quote deleted".bold.red);
       });
     }

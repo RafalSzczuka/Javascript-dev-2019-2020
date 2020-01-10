@@ -18,8 +18,8 @@ const addQuote = args => {
     newQuote.group = "unassigned group";
   }
 
-  fs.readFile("./quotes.json", "utf-8", (err, data) => {
-    if (err) throw err;
+  fs.readFile("./quotes.json", "utf-8", (error, data) => {
+    if (error) console.log(error.message);
 
     let file = JSON.parse(data);
 
@@ -35,8 +35,8 @@ const addQuote = args => {
     newQuote.id = lastElement + 1;
     file.quotes.push(newQuote);
 
-    fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
-      if (err) throw err;
+    fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", error => {
+      if (error) console.log(error.message);
       drawer(newQuote.id, newQuote.quote, newQuote.author, newQuote.group);
     });
   });

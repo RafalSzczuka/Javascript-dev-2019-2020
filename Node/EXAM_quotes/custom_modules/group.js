@@ -2,8 +2,8 @@ const fs = require("fs");
 const colors = require("colors");
 
 const addGroup = args => {
-  fs.readFile("./quotes.json", "utf-8", (err, data) => {
-    if (err) throw err;
+  fs.readFile("./quotes.json", "utf-8", (error, data) => {
+    if (error) console.log(error.message);
 
     let file = JSON.parse(data);
 
@@ -16,8 +16,8 @@ const addGroup = args => {
     // sets group name to selected quote
     file.quotes[quoteIndex].group = args.group;
 
-    fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", err => {
-      if (err) throw err;
+    fs.writeFile("./quotes.json", JSON.stringify(file), "utf-8", error => {
+      if (error) console.log(error.message);
       console.log(`Group`.bold, `${args.group}`.cyan, `assigned`.bold);
     });
   });
