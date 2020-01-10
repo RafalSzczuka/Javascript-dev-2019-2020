@@ -175,10 +175,13 @@
 // ZADANIE 10
 
 const axios = require("axios");
+const argv = require("yargs").argv;
+
+let userId = argv.id;
 
 const getUser = async id => {
   return (response = await axios(
-    `https://jsonplaceholder.typicode.com/users/${id}`
+    `https://jsonplaceholder.typicode.com/users/${userId}`
   ));
 };
 
@@ -188,16 +191,35 @@ const getPosts = async userId => {
   ));
 };
 
-const getComments = async;
+const getComments = async postId => {
+  return (response = await axios(
+    `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
+  ));
+};
 
-getUser(2)
+getUser(10)
   .then(user => {
     console.log(`User name: ${user.data.username}`);
     console.log(`User email: ${user.data.email}`);
+    let userEmail = user.data.email;
     return getPosts(user.data.id);
   })
   .then(posts => {
     console.log(`User posts: ${posts.data.length}`);
+    let postsIds = [];
+    posts.data.forEach(post => {
+      postsIds.push(post.id);
+    });
+    const commentsPromises = postsIds.map(id => getComments(id));
+    const postsData = Promise.all(commentsPromises);
+    return postsData;
+  })
+  .then(postsData => {
+    let comments = [];
+    postsData.forEach(post => {
+      comments.push(...post.data.map(obj => obj.body));
+    });
+    console.log(`User posts comments total number: ${comments.length}`);
   })
   .catch(error => {
     console.log(error.message);
