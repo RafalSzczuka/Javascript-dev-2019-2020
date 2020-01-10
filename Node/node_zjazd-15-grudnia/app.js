@@ -181,7 +181,7 @@ let userId = argv.id;
 
 const getUser = async id => {
   return (response = await axios(
-    `https://jsonplaceholder.typicode.com/users/${userId}`
+    `https://jsonplaceholder.typicode.com/users/${id}`
   ));
 };
 
@@ -197,7 +197,7 @@ const getComments = async postId => {
   ));
 };
 
-getUser(10)
+getUser(userId)
   .then(user => {
     console.log(`User name: ${user.data.username}`);
     console.log(`User email: ${user.data.email}`);
