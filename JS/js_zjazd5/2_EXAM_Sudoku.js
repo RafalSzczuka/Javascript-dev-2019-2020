@@ -12,31 +12,45 @@ let sudoku = [
   [5, 0, 8, 0, 0, 2, 1, 0, 3]
 ];
 
-// it counts how may times number appear in sudoku (at the end every number must appear 9 times).
-let counts = {};
+console.log("Base sudoku:");
+sudoku.forEach(row => console.log(row));
+console.log("");
 
-const refreshCounts = () => {
-  sudoku.forEach(row => {
-    row.forEach(num => {
-      counts[num] = counts[num] ? counts[num] + 1 : 1;
-    });
-  });
-};
-// console.log(counts);
+sudokuBacktrack(sudoku);
 
-let rows = [];
-let cols = [];
-let fields = [];
+console.log("Resolved sudoku:");
+sudoku.forEach(row => console.log(row));
 
-sudoku.forEach(row => {
-  rows.push(row);
-});
-
-for (let i = 0; i < 9; i++) {
-  let col = [];
-  for (let j = 0; j < 9; j++) {
-    col.push(sudoku[j][i]);
+//function validate if numbers in columns, rows and fields are not the same
+function isValid(board, row, col, k) {
+  for (let i = 0; i < 9; i++) {
+    const m = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+    const n = 3 * Math.floor(col / 3) + (i % 3);
+    if (board[row][i] == k || board[i][col] == k || board[m][n] == k) {
+      return false;
+    }
   }
-  cols.push(col);
+  return true;
 }
-// console.log(cols);
+
+// backtrack algorithm checking if new number fits in board. If not, reset number to 0, and step back
+function sudokuBacktrack(data) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (data[i][j] == 0) {
+        for (let k = 1; k <= 9; k++) {
+          if (isValid(data, i, j, k)) {
+            data[i][j] = k;
+            if (sudokuBacktrack(data)) {
+              return true;
+            } else {
+              data[i][j] = 0;
+            }
+          }
+        }
+        return false;
+      }
+    }
+  }
+  return true;
+}
