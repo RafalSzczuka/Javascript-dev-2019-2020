@@ -1,9 +1,4 @@
 // TASK: find leap years from given list of years
-// test
-// test2
-// test3
-// test4
-// test5
 
 let years = [1974, 1900, 1985, 2000];
 
