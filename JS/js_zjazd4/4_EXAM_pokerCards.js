@@ -88,7 +88,7 @@ const colorOcurrances = cards => {
     let num = cards[i].color;
     counts[num] = counts[num] ? counts[num] + 1 : 1;
   }
-  const occurances = Object.values(counts);
+  // const occurances = Object.values(counts);
   return occurances;
 };
 
