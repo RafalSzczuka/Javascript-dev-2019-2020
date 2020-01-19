@@ -1,10 +1,12 @@
 import React from "react";
+import ItemList from "../ItemList/ItemList";
 
 const Home = () => {
   return (
-    <div class="container">
-      <h1 class="header-big">Welcome to our store</h1>
-      <h2 class="header-small">Desktops</h2>
+    <div className="container">
+      <h1 className="header-big">Welcome to our store</h1>
+      <h2 className="header-small">Desktops</h2>
+      <ItemList />
     </div>
   );
 };
