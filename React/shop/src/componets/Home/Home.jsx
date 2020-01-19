@@ -1,12 +1,15 @@
 import React from "react";
-import ItemList from "../ItemList/ItemList";
+import Desktops from "../Featured/Desktops";
+import Tablets from "../Featured/Tablets";
 
 const Home = () => {
   return (
     <div className="container">
       <h1 className="header-big">Welcome to our store</h1>
       <h2 className="header-small">Desktops</h2>
-      <ItemList />
+      <Desktops />
+      <h2 className="header-small">Tablets</h2>
+      <Tablets />
     </div>
   );
 };
