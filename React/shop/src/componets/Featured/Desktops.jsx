@@ -6,8 +6,6 @@ const featuredDesktops = ItemsServie.getItems().filter(
   item => item.featured === true && item.category === "desktop"
 );
 
-console.log(featuredDesktops);
-
 const Desktops = () => {
   const products = featuredDesktops.map(item => (
     <ShopItem

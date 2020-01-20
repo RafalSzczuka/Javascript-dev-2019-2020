@@ -9,8 +9,8 @@ const Radio = props => {
           name={props.name}
           id={props.id}
           value={props.value}
-          onChange={props.changed}
-          checked={props.isSelected}
+          onChange={props.onChange}
+          defaultChecked={props.defaultChecked}
         />
         <label htmlFor={props.for}>{props.label}</label>
       </div>

@@ -6,8 +6,6 @@ const featuredTablets = ItemsServie.getItems().filter(
   item => item.featured === true && item.category === "tablet"
 );
 
-console.log(featuredTablets);
-
 const Tablets = () => {
   const products = featuredTablets.map(item => (
     <ShopItem

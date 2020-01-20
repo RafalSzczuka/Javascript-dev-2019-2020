@@ -52,9 +52,29 @@ const ProductList = () => {
           </div>
 
           <h4>Manufacturer</h4>
-          <Radio id="all" value="all" label="All" name="manufacturer" />
-          <Radio id="apple" value="apple" label="Apple" name="manufacturer" />
-          <Radio id="dell" value="dell" label="Dell" name="manufacturer" />
+
+          <Radio
+            id="all"
+            value=""
+            label="All"
+            name="manufacturer"
+            onChange={textChangeHandler}
+            defaultChecked
+          />
+          <Radio
+            id="apple"
+            value="apple"
+            label="Apple"
+            name="manufacturer"
+            onChange={textChangeHandler}
+          />
+          <Radio
+            id="dell"
+            value="dell"
+            label="Dell"
+            name="manufacturer"
+            onChange={textChangeHandler}
+          />
         </div>
       </div>
       <div className="column-right">
