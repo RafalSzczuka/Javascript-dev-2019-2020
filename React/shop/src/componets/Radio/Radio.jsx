@@ -6,11 +6,13 @@ const Radio = props => {
       <div>
         <input
           type="radio"
-          name="manufacturere"
+          name={props.name}
           id={props.id}
           value={props.value}
+          onChange={props.changed}
+          checked={props.isSelected}
         />
-        <label for={props.for}>{props.for}</label>
+        <label htmlFor={props.for}>{props.label}</label>
       </div>
     </div>
   );
