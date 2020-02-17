@@ -1,0 +1,28 @@
+form {
+  border: 1px solid greenyellow;
+  padding: 10px;
+}
+
+fieldset {
+  padding: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+}
+
+label,
+input[type="text"] {
+  margin: 10px;
+}
+
+.ng-touched.ng-invalid {
+  border: 1px solid crimson !important;
+}
+
+.error {
+  color: red;
+  font-size: 8px;
+  font-weight: bolder;
+}
