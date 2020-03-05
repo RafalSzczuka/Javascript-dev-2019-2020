@@ -10,13 +10,13 @@ let quotes = [
   }
 ];
 
-// http://localhost:4500/quotes
+// http://localhost:4800/quotes
 router.get("/", (req, res) => {
   res.send(quotes);
 });
 
-// http://localhost:4500/quotes/10
-// http://localhost:4500/quotes/2
+// http://localhost:4800/quotes/10
+// http://localhost:4800/quotes/2
 router.get("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const quote = quotes.find(q => q.id === id);
@@ -28,7 +28,7 @@ router.get("/:id", (req, res) => {
   }
 });
 
-// http://localhost:4500/quotes
+// http://localhost:4800/quotes
 // POST: { "author": "Franz Maurer", "quote": "Bo to zła kobieta była ..." }
 router.post("/", (req, res) => {
   const { author, quote } = req.body;
@@ -48,7 +48,7 @@ router.post("/", (req, res) => {
   }
 });
 
-// http://localhost:4500/quotes/10
+// http://localhost:4800/quotes/10
 router.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const lengthBeforeFilter = quotes.length;
@@ -62,7 +62,7 @@ router.delete("/:id", (req, res) => {
   }
 });
 
-// http://localhost:4500/quotes/10
+// http://localhost:4800/quotes/10
 // PUT: { "author": "Franz Maurer", "quote": "Bo to zła kobieta była ..." }
 router.put("/:id", (req, res) => {
   const id = parseInt(req.params.id);
