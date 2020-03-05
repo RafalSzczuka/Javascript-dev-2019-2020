@@ -1,12 +1,13 @@
 const express = require("express");
-const app = express();
 const taxRouter = require("./tax");
 const quotesRouter = require("./quotes");
+const todoRouter = require("./todo");
 
+const app = express();
 app.use(express.json());
-app.use(express.urlencoded());
 
-app.use(taxRouter);
+app.use("/podatek", taxRouter);
 app.use("/quotes", quotesRouter);
+app.use("/todo", todoRouter);
 
-app.listen(4500);
+app.listen(4500, () => console.log("server started"));
