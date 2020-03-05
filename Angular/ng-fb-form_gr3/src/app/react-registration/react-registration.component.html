@@ -1,0 +1,46 @@
+<form [formGroup]="myFormGroup" (ngSubmit)="register()">
+  <fieldset>
+    <legend>Rejestracja</legend>
+    <label>
+      Imie:
+    </label>
+    <input type="text" formControlName="firstName" />
+    <div class="error" *ngIf="hasError('firstName')">
+      Pole jest błędne: {{ myFormGroup.get("firstName").errors | json }}
+    </div>
+    <br />
+    <label>
+      Nazwisko:
+    </label>
+    <input type="text" formControlName="lastName" />
+    <br />
+    <label>
+      Email:
+    </label>
+    <input type="text" formControlName="email" />
+    <br />
+    <label>
+      Telefon:
+    </label>
+    <input type="text" formControlName="phoneNumber" />
+    <br />
+    <label>
+      Plec:
+    </label>
+    <label>
+      <input type="radio" formControlName="gender" value="1" />
+      Kobieta
+    </label>
+    <label>
+      <input type="radio" formControlName="gender" value="0" />
+      Mezczyna
+    </label>
+  </fieldset>
+
+  <button type="reset">Reset</button>
+  <button type="submit" [disabled]="myFormGroup.invalid && false">
+    Zapisz
+  </button>
+</form>
+
+<pre>{{ myFormGroup.value | json }}</pre>

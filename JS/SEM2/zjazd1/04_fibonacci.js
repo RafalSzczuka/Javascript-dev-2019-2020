@@ -6,10 +6,10 @@ The first few are therefore 1, 1, 1+1=2, 1+2=3, 2+3=5, 3+5=8.
 */
 
 class Fibonacci {
-  constructor(n) {
-    this.n = n;
+  constructor() {
     this.sequence = [];
-
+  }
+  getSequence(n) {
     if (n <= 0) {
       return (this.sequence = [0]);
     } else if (n === 1) {
@@ -26,11 +26,11 @@ class Fibonacci {
         this.sequence.push(nextNumber);
       }
     }
-
     return this.sequence;
   }
 }
 
-let fib = new Fibonacci(10);
+let fib = new Fibonacci();
+let sol8 = fib.getSequence(6);
 
-fib.forEach(num => console.log(num));
+sol8.forEach(num => console.log(num));

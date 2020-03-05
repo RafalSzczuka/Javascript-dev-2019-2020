@@ -1,0 +1,73 @@
+<form
+    #myForm="ngForm"
+    [ngFormOptions]="{ updateOn: 'submit' }"
+    (ngSubmit)="register($event, myForm)">
+    <fieldset>
+        <legend>Rejestracja</legend>
+        <label>
+            Imie:
+        </label>
+        <input type="text"
+            name="firstName"
+            #firstName="ngModel"
+            ngModel
+            required
+            minlength="3" />
+        <!-- <div class="error"
+            *ngIf="myForm.controls.firstName?.errors?.required">
+            Pole jest wymagane
+        </div> -->
+        <div class="error"
+            *ngIf="firstName.hasError('required') && firstName.touched">
+            Pole jest wymagane
+        </div>
+        <br />
+        <label>
+            Nazwisko:
+        </label>
+        <input type="text"
+            name="lastName"
+            ngModel
+            required
+            minlength="3" />
+        <br />
+        <label>
+            Email:
+        </label>
+        <input type="text" name="email"
+            ngModel
+            email />
+        <br />
+        <label>
+            Telefon:
+        </label>
+        <input type="text" name="phoneNumber"
+            ngModel
+            pattern="^[0-9\-]*$" />
+        <br />
+        <label>
+            Plec:
+        </label>
+        <label>
+            <input type="radio" name="gender"
+                value="1"
+                ngModel
+                required />
+            Kobieta
+        </label>
+        <label>
+            <input type="radio"
+                name="gender"
+                value="0"
+                ngModel
+                required />
+            Mezczyna
+        </label>
+    </fieldset>
+
+    <button type="reset">Reset</button>
+    <button type="submit"
+        [disabled]="myForm.invalid && false">Zapisz</button>
+</form>
+
+<pre>{{ myForm.value | json }}</pre>
