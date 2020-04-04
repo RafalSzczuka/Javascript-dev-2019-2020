@@ -1,4 +1,4 @@
-// Write a code that multiplies two matrices together. Dimension validation required.
+// Write a code that multiplies two matrices together. Dimension validation required
 /*      2 1 3
        -1 4 0
 
