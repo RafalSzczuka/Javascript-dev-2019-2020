@@ -31,6 +31,6 @@ class Fibonacci {
 }
 
 let fib = new Fibonacci();
-let sol8 = fib.getSequence(6);
+let sol8 = fib.getSequence(100);
 
 sol8.forEach(num => console.log(num));
