@@ -49,10 +49,9 @@ class Matrix {
     let result = [];
 
     if (matrix1.cols !== matrix2.rows) {
-      // throw new Error(
-      //   "Columns of the first matrix must be the same number as rows of second matrix"
-      // );
-      return;
+      throw new Error(
+        "Columns of the first matrix must be the same number as rows of second matrix"
+      );
     } else {
       for (let i = 0; i < matrix1.rows; i++) {
         result[i] = [];
@@ -87,7 +86,7 @@ m2.setCustomGrid([
   [5, -3, 2],
 ]);
 
-m3.setRandomGrid(3, 3);
+m3.setRandomGrid(3, 2);
 m4.setRandomGrid(2, 3);
 
 const multipliedCustomGrid = Matrix.multiply(m1, m2);
