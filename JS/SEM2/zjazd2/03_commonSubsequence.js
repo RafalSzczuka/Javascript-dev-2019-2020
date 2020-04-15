@@ -33,6 +33,6 @@ class Sequence {
   }
 }
 
-const sequence = new Sequence("karol", "rolki");
+const sequence = new Sequence("Karol", "rolki");
 
 console.log(sequence.commonSubsequence());

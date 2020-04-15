@@ -89,20 +89,20 @@ m2.setCustomGrid([
 m3.setRandomGrid(3, 2);
 m4.setRandomGrid(2, 3);
 
-const multipliedCustomGrid = Matrix.multiply(m1, m2);
-console.log("Custom grids:");
-m1.grid.forEach((num) => console.log(num));
-console.log("***************");
-m2.grid.forEach((num) => console.log(num));
-console.log("***************");
-console.log("Multiplied:");
-multipliedCustomGrid.forEach((num) => console.log(num));
-
-// const multipliedRandomGrid = Matrix.multiply(m3, m4);
-// console.log("Random grids:");
-// m3.grid.forEach((num) => console.log(num));
+// const multipliedCustomGrid = Matrix.multiply(m1, m2);
+// console.log("Custom grids:");
+// m1.grid.forEach((num) => console.log(num));
 // console.log("***************");
-// m4.grid.forEach((num) => console.log(num));
+// m2.grid.forEach((num) => console.log(num));
 // console.log("***************");
 // console.log("Multiplied:");
-// multipliedRandomGrid.forEach((num) => console.log(num));
+// multipliedCustomGrid.forEach((num) => console.log(num));
+
+const multipliedRandomGrid = Matrix.multiply(m3, m4);
+console.log("Random grids:");
+m3.grid.forEach((num) => console.log(num));
+console.log("***************");
+m4.grid.forEach((num) => console.log(num));
+console.log("***************");
+console.log("Multiplied:");
+multipliedRandomGrid.forEach((num) => console.log(num));

@@ -243,3 +243,21 @@
 // const anotherFn = myFn.bind("->tutaj był THIS<-");
 
 // anotherFn();
+// var a = ["dog", "cat", "hen"];
+
+// a[100] = "fox";
+
+// console.log(a.length);
+
+// console.log([] == []);
+
+// class X {
+//   get Y() {
+//     return 42;
+//   }
+// }
+
+// x
+
+var a;
+var b = (a = 3) ? true : false;
