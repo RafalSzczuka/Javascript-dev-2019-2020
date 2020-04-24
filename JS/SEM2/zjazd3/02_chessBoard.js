@@ -26,6 +26,8 @@ const utils = (function () {
   return { randomNumber, excludeOwnField, figureTypes };
 })();
 
+let done = false;
+
 //general classes
 class Board {
   constructor() {
@@ -55,6 +57,7 @@ class Figure {
     this.posY = null;
     this.moves = [];
     this.collisions = [];
+    this.checked = false;
   }
 }
 
@@ -216,25 +219,53 @@ class FigureMovesChecker {
 }
 
 class FigureCollisionChecker {
-  constructor() {
-    this.colide = false;
-    this.collisions = [];
-  }
   isCollision(board) {
     //optimal reduce for fields only with figures
     const onlyFigures = board.filter((field) => field.figure !== null);
 
-    onlyFigures.forEach((element) => {
+    if (onlyFigures.length > 1) {
       for (let i = 0; i < onlyFigures.length; i++) {
-        let check = element.figure.moves.find(
-          (move) => move.x === onlyFigures[i].x && move.y === onlyFigures[i].y
-        );
-        if (check) {
-          this.collisions.push(check);
-          this.colide = true;
+        if (!onlyFigures[i].figure.checked) {
+          onlyFigures[i].figure.moves.forEach((move) => {
+            for (let j = 1; j < onlyFigures.length; j++) {
+              if (
+                move.x === onlyFigures[j].figure.posX &&
+                move.y === onlyFigures[j].figure.posY
+              ) {
+                onlyFigures[i].figure.collisions.push(onlyFigures[j].figure);
+              }
+            }
+          });
+          if (onlyFigures[i].figure.collisions.length > 0) {
+            const takes = onlyFigures[i].figure.collisions;
+
+            done = true;
+
+            console.log(
+              `${onlyFigures[i].figure.type.toUpperCase()} on ${
+                onlyFigures[i].figure.posX
+              }x, ${onlyFigures[i].figure.posY}y position TAKES:`
+            );
+            takes.forEach((take) =>
+              console.log(
+                `- ${take.type} on ${take.posX}x, ${take.posY}y position`
+              )
+            );
+            console.log();
+
+            return true;
+          } else {
+            onlyFigures[i].figure.checked = true;
+            onlyFigures.push(onlyFigures[i]);
+            onlyFigures.shift();
+          }
         }
       }
-    });
+      onlyFigures.forEach((figure) => {
+        figure.figure.checked = false;
+      });
+      return false;
+    }
   }
 }
 
@@ -270,27 +301,24 @@ class RandomFigureGenerator {
         break;
     }
 
-    // console.log(board[idIndex]);
+    console.log(
+      `Figure created: ${board[idIndex].figure.type.toUpperCase()} on ${
+        board[idIndex].x
+      }x, ${board[idIndex].y}y position\n`
+    );
   }
 }
+
+// ***************** EXECUTION *****************
 
 const figureCreator = new FigureCreator();
 const randomFigure = new RandomFigureGenerator();
 const moveChecker = new FigureMovesChecker();
 const collision = new FigureCollisionChecker();
+
 randomFigure.setFigureRandomlyOnBoard(chessBoard);
 
-// flag
-let isCollision = false;
-
-// while (!isCollision) {
-//   randomFigure.setFigureRandomlyOnBoard(chessBoard);
-//   collision.isCollision(chessBoard);
-//   let filteredBoard = chessBoard.filter((field) => field.figure !== null);
-//   console.log(filteredBoard);
-//   if (collision.colide) {
-//     isCollision = !isCollision;
-//     console.log(collision.collisions);
-//     console.log("finished");
-//   }
-// }
+while (!done) {
+  randomFigure.setFigureRandomlyOnBoard(chessBoard);
+  collision.isCollision(chessBoard);
+}
