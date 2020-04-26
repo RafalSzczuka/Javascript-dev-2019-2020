@@ -32,6 +32,7 @@ let done = false;
 class Board {
   constructor() {
     this.fields = [];
+    this.figures = [];
 
     for (let i = 1; i < 9; i++) {
       for (let j = 1; j < 9; j++) {
@@ -45,9 +46,9 @@ class Board {
     }
   }
 }
-const board = new Board();
+const emptyBoard = new Board();
 
-const chessBoard = board.fields;
+const chessBoard = emptyBoard.fields;
 let emptyFieldsIds = [];
 chessBoard.forEach((field) => emptyFieldsIds.push(field.id));
 
@@ -57,7 +58,7 @@ class Figure {
     this.posY = null;
     this.moves = [];
     this.collisions = [];
-    this.checked = false;
+    this.takes = false;
   }
 }
 
@@ -218,57 +219,6 @@ class FigureMovesChecker {
   }
 }
 
-class FigureCollisionChecker {
-  isCollision(board) {
-    //optimal reduce for fields only with figures
-    const onlyFigures = board.filter((field) => field.figure !== null);
-
-    if (onlyFigures.length > 1) {
-      for (let i = 0; i < onlyFigures.length; i++) {
-        if (!onlyFigures[i].figure.checked) {
-          onlyFigures[i].figure.moves.forEach((move) => {
-            for (let j = 1; j < onlyFigures.length; j++) {
-              if (
-                move.x === onlyFigures[j].figure.posX &&
-                move.y === onlyFigures[j].figure.posY
-              ) {
-                onlyFigures[i].figure.collisions.push(onlyFigures[j].figure);
-              }
-            }
-          });
-          if (onlyFigures[i].figure.collisions.length > 0) {
-            const takes = onlyFigures[i].figure.collisions;
-
-            done = true;
-
-            console.log(
-              `${onlyFigures[i].figure.type.toUpperCase()} on ${
-                onlyFigures[i].figure.posX
-              }x, ${onlyFigures[i].figure.posY}y position TAKES:`
-            );
-            takes.forEach((take) =>
-              console.log(
-                `- ${take.type} on ${take.posX}x, ${take.posY}y position`
-              )
-            );
-            console.log();
-
-            return true;
-          } else {
-            onlyFigures[i].figure.checked = true;
-            onlyFigures.push(onlyFigures[i]);
-            onlyFigures.shift();
-          }
-        }
-      }
-      onlyFigures.forEach((figure) => {
-        figure.figure.checked = false;
-      });
-      return false;
-    }
-  }
-}
-
 class RandomFigureGenerator {
   setFigureRandomlyOnBoard(board) {
     let figure = figureCreator.createFigure();
@@ -281,6 +231,8 @@ class RandomFigureGenerator {
     board[idIndex].figure = figure;
     figure.posX = board[idIndex].x;
     figure.posY = board[idIndex].y;
+
+    emptyBoard.figures.push(figure);
 
     // switch case - checking type of a figure, and apply method checking avaliable moves
     switch (figure.type) {
@@ -306,6 +258,45 @@ class RandomFigureGenerator {
         board[idIndex].x
       }x, ${board[idIndex].y}y position\n`
     );
+  }
+}
+
+class FigureCollisionChecker {
+  isCollision(board) {
+    const onlyFigures = emptyBoard.figures;
+
+    for (let i = 0; i < onlyFigures.length; i++) {
+      for (let j = 0; j < onlyFigures.length; j++) {
+        if (onlyFigures[i] === onlyFigures[j]) {
+          continue;
+        } else {
+          onlyFigures[i].moves.forEach((move) => {
+            if (
+              move.x === onlyFigures[j].posX &&
+              move.y === onlyFigures[j].posY
+            ) {
+              let take = `${onlyFigures[j].type}, on ${onlyFigures[j].posX}x, ${onlyFigures[j].posY}y`;
+              onlyFigures[i].collisions.push(take);
+
+              onlyFigures[i].takes = true;
+            }
+          });
+        }
+      }
+
+      if (onlyFigures[i].takes === true) {
+        done = true;
+        console.log(
+          `${onlyFigures[i].type.toUpperCase()} on ${onlyFigures[i].posX}x, ${
+            onlyFigures[i].posY
+          }y position TAKES:`
+        );
+        onlyFigures[i].collisions.forEach((collision) =>
+          console.log("- " + collision)
+        );
+        break;
+      }
+    }
   }
 }
 
