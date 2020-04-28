@@ -26,8 +26,6 @@ const utils = (function () {
   return { randomNumber, excludeOwnField, figureTypes };
 })();
 
-let done = false;
-
 //general classes
 class Board {
   constructor() {
@@ -46,11 +44,6 @@ class Board {
     }
   }
 }
-const emptyBoard = new Board();
-
-const chessBoard = emptyBoard.fields;
-let emptyFieldsIds = [];
-chessBoard.forEach((field) => emptyFieldsIds.push(field.id));
 
 class Figure {
   constructor() {
@@ -97,6 +90,7 @@ class King extends Figure {
   }
 }
 
+// figure factory
 class FigureCreator {
   setRandomType() {
     let idx = utils.randomNumber(utils.figureTypes.length);
@@ -119,6 +113,7 @@ class FigureCreator {
   }
 }
 
+// figure avaliable moves checker
 class FigureMovesChecker {
   checkStraights(figure) {
     for (let i = 1; i < 9; i++) {
@@ -219,9 +214,13 @@ class FigureMovesChecker {
   }
 }
 
+// random figure generator
 class RandomFigureGenerator {
   setFigureRandomlyOnBoard(board) {
     let figure = figureCreator.createFigure();
+
+    let emptyFieldsIds = [];
+    chessBoard.forEach((field) => emptyFieldsIds.push(field.id));
 
     let index = utils.randomNumber(emptyFieldsIds.length);
     let id = emptyFieldsIds[index];
@@ -261,7 +260,11 @@ class RandomFigureGenerator {
   }
 }
 
+// figure avaliable takes checker
 class FigureCollisionChecker {
+  constructor(gameFinished) {
+    this.gameFinished = gameFinished;
+  }
   isCollision(board) {
     const onlyFigures = emptyBoard.figures;
 
@@ -300,16 +303,52 @@ class FigureCollisionChecker {
   }
 }
 
+// start game class
+class ChessGame {
+  constructor(
+    board,
+    figureCreator,
+    randomFigure,
+    figureMoves,
+    collisionChecker
+  ) {
+    this.board = board;
+    this.figureCreator = figureCreator;
+    this.randomFigure = randomFigure;
+    this.figureMoves = figureMoves;
+    this.collisionChecker = collisionChecker;
+    this.gameFinished = false;
+  }
+
+  startGame() {
+    this.randomFigure.setFigureRandomlyOnBoard(this.board);
+
+    while (!done) {
+      this.randomFigure.setFigureRandomlyOnBoard(this.board);
+      this.collisionChecker.isCollision(this.board);
+    }
+  }
+}
+
 // ***************** EXECUTION *****************
+
+let done = false;
+
+const emptyBoard = new Board();
+const chessBoard = emptyBoard.fields;
 
 const figureCreator = new FigureCreator();
 const randomFigure = new RandomFigureGenerator();
 const moveChecker = new FigureMovesChecker();
 const collision = new FigureCollisionChecker();
 
-randomFigure.setFigureRandomlyOnBoard(chessBoard);
+const game = new ChessGame(
+  chessBoard,
+  figureCreator,
+  randomFigure,
+  moveChecker,
+  collision
+);
 
-while (!done) {
-  randomFigure.setFigureRandomlyOnBoard(chessBoard);
-  collision.isCollision(chessBoard);
-}
+// start a new game
+game.startGame();
