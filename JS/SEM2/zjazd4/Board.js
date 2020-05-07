@@ -1,4 +1,5 @@
 "use strict";
+const utils = require("./utils");
 
 class Board {
   constructor() {
@@ -34,21 +35,19 @@ class Board {
   getRandomBoard() {
     let figuresCopy = [...this.figures];
 
-    const randomIndex = () => {
-      const randomIndex = Math.floor(Math.random() * this.board.length);
-      return randomIndex;
-    };
-
     const fillBoard = () => {
       let result = [...this.board];
 
       for (let i = 0; i < figuresCopy.length; i++) {
         for (let j = 0; j < 2; j++) {
-          let rnd = randomIndex();
+          let rnd = utils.random(this.board);
           while (result[rnd] !== "") {
-            rnd = randomIndex();
+            rnd = utils.random(this.board);
           }
-          result[rnd] = { figure: figuresCopy[i], id: rnd };
+          result[rnd] = {
+            figure: figuresCopy[i],
+            id: rnd,
+          };
         }
 
         figuresCopy.splice(i, 1);
@@ -64,4 +63,4 @@ class Board {
 
 const board = new Board();
 
-module.exports = board.getRandomBoard();
+module.exports = board;

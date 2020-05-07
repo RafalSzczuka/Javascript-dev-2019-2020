@@ -1,8 +1,8 @@
-const Player = require("./Player");
+"use strict";
 
-const utils = (() => {
-  const random = (range) => Math.floor(Math.random() * range.length);
-})();
+const Player = require("./Player");
+const board = require("./Board");
+const utils = require("./utils");
 
 class MemoryGame {
   constructor(playersNumber = 2) {
@@ -11,29 +11,43 @@ class MemoryGame {
         "Players number must be between 2 nad 4. If you don't set a players number, default value is 2."
       );
     this.playersNumber = playersNumber;
-
-    this.board = require("./Board");
+    this.board = board.getRandomBoard();
     this.players = this.setPlayers();
-    this.gameFinished = false;
   }
 
   setPlayers() {
     let players = [];
     for (let i = 0; i < this.playersNumber; i++) {
-      let player = new Player(this.board, i + 1);
-      this.initializePlayerMemory(player);
+      let player = new Player(i + 1);
       players.push(player);
     }
     return players;
   }
 
-  initializePlayerMemory(player) {
-    for (let i = 0; i < this.board.length; i++) {
-      player.memory.push("");
+  start() {
+    while (this.board.length > 0) {
+      for (let i = 0; i < this.players.length; i++) {
+        let activePlayer = this.players[i];
+
+        if (this.board.length === 0) break;
+
+        let card1 = utils.getRandomCard(this.board);
+        let card2 = utils.getRandomCard(this.board);
+
+        while (card2.id === card1.id) {
+          card2 = utils.getRandomCard(this.board);
+        }
+
+        if (card1.figure === card2.figure) {
+          activePlayer.matches++;
+          this.board = this.board.filter((c) => c.figure !== card1.figure);
+        }
+      }
     }
   }
 }
 
-const nb = new MemoryGame(3);
+const game = new MemoryGame(4);
 
-console.log(nb.players);
+game.start();
+console.log(game.players);

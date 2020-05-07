@@ -10,7 +10,7 @@
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
       "program": "${file}",
-      "autoAttachChildProcesses": true
+      "autoAttachChildProcesses": false
     }
   ]
 }
