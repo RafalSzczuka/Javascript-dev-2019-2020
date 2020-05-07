@@ -24,30 +24,82 @@ class MemoryGame {
     return players;
   }
 
+  initializeMemory(player) {
+    if (!player.memory.length) {
+      let card = utils.getRandomCard(this.board);
+      player.memory.push(card);
+      console.log(
+        `Player ${player.id} choosed Card: ${card.figure}, id: ${card.id}`
+      );
+    }
+  }
+
+  getCard(player) {
+    if (this.board.length > 0) {
+      let card = utils.getRandomCard(this.board);
+      console.log(
+        `Player ${player.id} choosed Card: ${card.figure}, id: ${card.id}`
+      );
+
+      // if card is in memory, choose another one
+      while (player.memory.filter((c) => c.id === card.id).length) {
+        card = utils.getRandomCard(this.board);
+        console.log(
+          `Player ${player.id} choosed Card: ${card.figure}, id: ${card.id}`
+        );
+      }
+      this.compareCards(player, card);
+
+      player.memory.push(card);
+    }
+  }
+
+  compareCards(player, card) {
+    let check = player.memory.find((c) => c.figure === card.figure);
+    if (check) {
+      this.board = this.board.filter((elem) => elem.figure !== card.figure);
+      player.matches++;
+      console.log(
+        `Player ${player.id} have a match! Card: ${card.figure}, id: ${card.id} and Card: ${check.figure}, id ${check.id}`
+      );
+
+      this.getCard(player);
+    } else {
+      return;
+    }
+  }
+
   start() {
     while (this.board.length > 0) {
       for (let i = 0; i < this.players.length; i++) {
         let activePlayer = this.players[i];
 
-        if (this.board.length === 0) break;
+        this.initializeMemory(activePlayer);
+        this.getCard(activePlayer);
 
-        let card1 = utils.getRandomCard(this.board);
-        let card2 = utils.getRandomCard(this.board);
+        // if (this.board.length === 0) break;
 
-        while (card2.id === card1.id) {
-          card2 = utils.getRandomCard(this.board);
-        }
+        // let card1 = utils.getRandomCard(this.board);
+        // let card2 = utils.getRandomCard(this.board);
 
-        if (card1.figure === card2.figure) {
-          activePlayer.matches++;
-          this.board = this.board.filter((c) => c.figure !== card1.figure);
-        }
+        // while (card2.id === card1.id) {
+        //   card2 = utils.getRandomCard(this.board);
+        // }
+
+        // if (card1.figure === card2.figure) {
+        //   activePlayer.matches++;
+        //   this.board = this.board.filter((c) => c.figure !== card1.figure);
+        // }
       }
     }
   }
 }
 
-const game = new MemoryGame(4);
+const game = new MemoryGame(2);
 
 game.start();
-console.log(game.players);
+console.log(`Game finished.\nScore:`);
+game.players.forEach((player) =>
+  console.log(`Player ${player.id}: ${player.matches}`)
+);
+// console.log(game.players);
